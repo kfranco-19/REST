@@ -71,8 +71,12 @@ public class PersonaController {
             @RequestBody Persona entityParam) {
 
         Persona persona = listaPersonas.get(0);
-        persona.setPrimerNombre(entityParam.getSegundoNombre());
-
+        persona.setPrimerNombre(entityParam.getPrimerNombre());
+        persona.setSegundoNombre(entityParam.getSegundoNombre());
+        persona.setEdad(entityParam.getEdad());
+        persona.setDireccion(entityParam.getDireccion());
+        persona.setTelefono(entityParam.getTelefono());
+        
         return new ResponseEntity<>(persona, HttpStatus.OK);
     }
 
@@ -88,7 +92,6 @@ public class PersonaController {
         persona.setId(id);
         persona.setPrimerNombre("Manuel");
         persona.setSegundoNombre("Mendez");
-
         return persona;
     }
 

@@ -9,7 +9,8 @@ public class Persona {
     private String primerNombre;
     private String segundoNombre;
     private int edad;
-
+    private String direccion;
+    private int telefono;
 
 }
 

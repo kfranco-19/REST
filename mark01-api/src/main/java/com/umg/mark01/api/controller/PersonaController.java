@@ -57,7 +57,7 @@ public class PersonaController {
         listaPersonas.add(entityParam);
 
         // cuando se crea una nueva persona.... notificar esta accion al emisor
-        System.out.println("Notificando nueva persona:" + entityParam.getPrimerNombre());
+        System.out.println("Notificando nueva persona:" + entityParam.getNombre());
         notificationProcessor.onNext(entityParam);
 
         return new ResponseEntity<>(entityParam, HttpStatus.OK);
@@ -71,11 +71,11 @@ public class PersonaController {
             @RequestBody Persona entityParam) {
 
         Persona persona = listaPersonas.get(0);
-        persona.setPrimerNombre(entityParam.getPrimerNombre());
-        persona.setSegundoNombre(entityParam.getSegundoNombre());
-        persona.setEdad(entityParam.getEdad());
+        persona.setNombre(entityParam.getNombre());
+        persona.setApellido(entityParam.getApellido());
+        persona.setApodo(entityParam.getApodo());
+        persona.setCorreo(entityParam.getCorreo());
         persona.setDireccion(entityParam.getDireccion());
-        persona.setTelefono(entityParam.getTelefono());
         
         return new ResponseEntity<>(persona, HttpStatus.OK);
     }
@@ -90,8 +90,8 @@ public class PersonaController {
 
         Persona persona = new Persona();
         persona.setId(id);
-        persona.setPrimerNombre("Manuel");
-        persona.setSegundoNombre("Mendez");
+        persona.setNombre("");
+        persona.setApellido("");
         return persona;
     }
 

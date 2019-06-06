@@ -1,6 +1,5 @@
 package com.umg.mark01.api.controller;
 
-
 import com.umg.mark01.core.entities.Persona;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -10,13 +9,11 @@ import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.EmitterProcessor;
 import reactor.core.publisher.Flux;
-
 import javax.annotation.PostConstruct;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 
 @Api(value = "/", description = "REST Persona")
 @RestController
@@ -57,7 +54,7 @@ public class PersonaController {
         listaPersonas.add(entityParam);
 
         // cuando se crea una nueva persona.... notificar esta accion al emisor
-        System.out.println("Notificando nueva persona:" + entityParam.getNombre());
+        System.out.println("Notificando nueva persona:" + entityParam.getUsuario());
         notificationProcessor.onNext(entityParam);
 
         return new ResponseEntity<>(entityParam, HttpStatus.OK);
@@ -71,11 +68,9 @@ public class PersonaController {
             @RequestBody Persona entityParam) {
 
         Persona persona = listaPersonas.get(0);
-        persona.setNombre(entityParam.getNombre());
-        persona.setApellido(entityParam.getApellido());
-        persona.setApodo(entityParam.getApodo());
-        persona.setCorreo(entityParam.getCorreo());
-        persona.setDireccion(entityParam.getDireccion());
+        persona.setEmail(entityParam.getEmail());
+        persona.setUsuario(entityParam.getUsuario());
+        
         
         return new ResponseEntity<>(persona, HttpStatus.OK);
     }
@@ -90,8 +85,8 @@ public class PersonaController {
 
         Persona persona = new Persona();
         persona.setId(id);
-        persona.setNombre("");
-        persona.setApellido("");
+        persona.setEmail("");
+        persona.setUsuario("");
         return persona;
     }
 
